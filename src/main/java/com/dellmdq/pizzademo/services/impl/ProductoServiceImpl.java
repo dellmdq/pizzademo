@@ -12,6 +12,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @AllArgsConstructor
@@ -31,5 +33,10 @@ public class ProductoServiceImpl implements ProductoService {
         Producto productoCreated = productoRepository.save(producto);
         ProductoDTO result = modelMapper.map(productoCreated, ProductoDTO.class);
         return result;
+    }
+
+    @Override
+    public List<Producto> findAll() {
+        return productoRepository.findAll();
     }
 }

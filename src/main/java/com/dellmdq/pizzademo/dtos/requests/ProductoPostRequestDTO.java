@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
@@ -21,6 +21,8 @@ public class ProductoPostRequestDTO {
     private String descripcionCorta;
 
     private String descripcionLarga;
+
+    @Min(value = 1, message = "Ingrese un precio unitario válido por favor.")
     private Double precioUnitario;
 
 }
