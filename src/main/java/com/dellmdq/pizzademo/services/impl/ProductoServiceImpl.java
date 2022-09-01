@@ -1,9 +1,10 @@
 package com.dellmdq.pizzademo.services.impl;
 
-import com.dellmdq.pizzademo.dtos.requests.ProductoDTO;
+import com.dellmdq.pizzademo.dtos.responses.ProductoResponseDTO;
 import com.dellmdq.pizzademo.dtos.requests.ProductoPostRequestDTO;
 import com.dellmdq.pizzademo.entities.Producto;
 import com.dellmdq.pizzademo.exceptions.BadRequestException;
+import com.dellmdq.pizzademo.exceptions.NotFoundException;
 import com.dellmdq.pizzademo.repositories.ProductoRepository;
 import com.dellmdq.pizzademo.services.ProductoService;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -25,13 +27,13 @@ public class ProductoServiceImpl implements ProductoService {
     private ModelMapper modelMapper;
 
     @Override
-    public ProductoDTO create(ProductoPostRequestDTO productoPostRequestDTO) throws BadRequestException {
+    public ProductoResponseDTO create(ProductoPostRequestDTO productoPostRequestDTO) throws BadRequestException {
 
         //todo manejo de excepciones
         //mapeo el dto al producto (entity) para poder guardarlo en bd
         Producto producto = modelMapper.map(productoPostRequestDTO, Producto.class);
         Producto productoCreated = productoRepository.save(producto);
-        ProductoDTO result = modelMapper.map(productoCreated, ProductoDTO.class);
+        ProductoResponseDTO result = modelMapper.map(productoCreated, ProductoResponseDTO.class);
         return result;
     }
 
@@ -39,4 +41,16 @@ public class ProductoServiceImpl implements ProductoService {
     public List<Producto> findAll() {
         return productoRepository.findAll();
     }
+
+    @Override
+    public Producto findById(UUID id) {
+        return productoRepository.findById(id).orElseThrow(() -> (new NotFoundException(String.format("Producto con UUID: %s no fue encontrado.", id))));
+    }
+
+    @Override
+    public void deleteById(UUID id) {
+        productoRepository.deleteById(id);
+    }
+
+
 }

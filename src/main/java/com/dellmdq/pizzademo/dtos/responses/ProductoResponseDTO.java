@@ -1,4 +1,4 @@
-package com.dellmdq.pizzademo.dtos.requests;
+package com.dellmdq.pizzademo.dtos.responses;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class ProductoDTO {
+public class ProductoResponseDTO {
 
     private UUID id;
     private String nombre;
