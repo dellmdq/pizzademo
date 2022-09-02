@@ -56,7 +56,7 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public void update(UUID id, ProductoRequestDTO productoRequestDTO) throws NotFoundException {
 
-        Producto productoExistente = this.findById(id);//todo probar caso en que no existe el id
+        Producto productoExistente = this.findById(id);
 
         //seteo todos los valores de acuerdo a la lógica del put y lo guardo en la bd
         productoExistente.setNombre(productoRequestDTO.getNombre());

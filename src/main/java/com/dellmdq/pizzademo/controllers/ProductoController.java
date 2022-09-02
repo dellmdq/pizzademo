@@ -35,7 +35,7 @@ public class ProductoController {
     private ModelMapper modelMapper;
 
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody ProductoRequestDTO productoRequestDTO){//todo caso en que ya existe el producto exceptcion DataAlreadyExistException
+    public ResponseEntity<?> create(@Valid @RequestBody ProductoRequestDTO productoRequestDTO){//todo caso en que ya existe el producto por nombre exceptcion DataAlreadyExistException
         try{
             ProductoResponseDTO productoDTO = productoService.create(productoRequestDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(productoDTO);

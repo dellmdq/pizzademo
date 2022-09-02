@@ -11,7 +11,7 @@ public class PizzademoApplication {
 	//todo agregar collections postman al proyecto
 	//todo demo con peek o obs para mostrar funcionalidad
 	//todo openapi
-	//chequear regex validacion de algunos campos telefono, email, UUID (?)
+	//todochequear regex validacion de algunos campos telefono, email, UUID (?)
 	public static void main(String[] args) {
 		SpringApplication.run(PizzademoApplication.class, args);
 	}
