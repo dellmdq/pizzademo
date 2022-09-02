@@ -46,21 +46,21 @@ public class PedidoDetalle {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "pedido_cabecera_id", nullable = false)
-    private PedidoCabecera pedidoCabecera;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
 
     @NotNull
-    @NotEmpty
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
     @NotNull
-    @NotEmpty
     @Column(name = "precio_unitario", nullable = false)
     private Double precioUnitario;
+
+    public PedidoDetalle(Producto tempProd, Integer cantidad, Double precioUnitario) {
+        this.producto = tempProd;
+        this.cantidad = cantidad;
+        this.precioUnitario = precioUnitario;
+    }
 }

@@ -9,9 +9,9 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class DetallePedidoDTO {
+public class DetalleRequestDTO {
     @NotBlank
-    private UUID id;
+    private UUID producto;
     @Min(value = 0, message = "Cantidad no puede ser menor a uno")
     private Integer cantidad;
 }

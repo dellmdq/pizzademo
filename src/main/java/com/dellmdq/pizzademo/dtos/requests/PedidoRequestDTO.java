@@ -1,5 +1,6 @@
 package com.dellmdq.pizzademo.dtos.requests;
 
+import com.dellmdq.pizzademo.enums.Estado;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,6 @@ public class PedidoRequestDTO {
     //todo buscar regexp para telefonos de argentina
     private String telefono;
     private LocalTime horario;
-    private List<DetallePedidoDTO> detalles;
+    private List<DetalleRequestDTO> detalle;
 
 }
