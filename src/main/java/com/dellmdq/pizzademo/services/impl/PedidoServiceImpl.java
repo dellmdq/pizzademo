@@ -33,7 +33,7 @@ public class PedidoServiceImpl implements PedidoService {
                 pedido.getTelefono(),
                 pedido.getHorario());
         //lista de detalles -> producto (para agregar al entity PedidoDetalle)
-        List<PedidoDetalle> detallesCabecera = pedidoUtils.detalleRequestDTOtoPedidoDetalle(pedido.getDetalle());
+        List<PedidoDetalle> detallesCabecera = pedidoUtils.convertirAPedidoDetalle(pedido.getDetalle());
         cabecera.setDetalles(detallesCabecera);
         //logica de descuento más de 3 articulos
         cabecera.setAplicoDescuento(pedidoUtils.descuentoTresArticulosAplicable(detallesCabecera));
@@ -44,16 +44,7 @@ public class PedidoServiceImpl implements PedidoService {
         //guardo detalles
         PedidoCabecera pedidoCreado = pedidoRepository.save(cabecera);
         //contruccion de respuesta
-        PedidoResponseDTO response = new PedidoResponseDTO();
-        response.setFecha(pedidoCreado.getFechaAlta());
-        response.setDireccion(pedidoCreado.getDireccion());
-        response.setEmail(pedidoCreado.getEmail());
-        response.setTelefono(pedidoCreado.getTelefono());
-        response.setHorario(pedidoCreado.getHorario());
-        response.setDetalles(pedidoUtils.pedidoDetalleToDetalleResponseDTO(detallesCabecera));
-        response.setTotal(pedidoCreado.getMontoTotal());
-        response.setDescuento(pedidoCreado.getAplicoDescuento());
-        response.setEstado(pedidoCreado.getEstado());
+        PedidoResponseDTO response = pedidoUtils.obtenerResponseDTO(pedidoCreado, detallesCabecera);
 
         return response;
 

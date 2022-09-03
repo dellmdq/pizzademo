@@ -2,6 +2,8 @@ package com.dellmdq.pizzademo.utils;
 
 import com.dellmdq.pizzademo.dtos.requests.DetalleRequestDTO;
 import com.dellmdq.pizzademo.dtos.responses.PedidoDetalleResponseDTO;
+import com.dellmdq.pizzademo.dtos.responses.PedidoResponseDTO;
+import com.dellmdq.pizzademo.entities.PedidoCabecera;
 import com.dellmdq.pizzademo.entities.PedidoDetalle;
 import com.dellmdq.pizzademo.entities.Producto;
 import com.dellmdq.pizzademo.services.ProductoService;
@@ -47,7 +49,7 @@ public class PedidoUtils {
      * @param detalleDTOList lista con los detalles pasados por request
      * @return Lista de detalle de pedido.
      */
-    public List<PedidoDetalle> detalleRequestDTOtoPedidoDetalle(
+    public List<PedidoDetalle> convertirAPedidoDetalle(
             List<DetalleRequestDTO> detalleDTOList){
         List<PedidoDetalle> detallesCabecera = new ArrayList<>();
         for (DetalleRequestDTO pd : detalleDTOList) {
@@ -62,7 +64,7 @@ public class PedidoUtils {
         return detallesCabecera;
     }
 
-    public List<PedidoDetalleResponseDTO> pedidoDetalleToDetalleResponseDTO(
+    public List<PedidoDetalleResponseDTO> convertirADetalleResponseDTO(
             List<PedidoDetalle> pedidoDetalles){
         List<PedidoDetalleResponseDTO> detalleDTOList = new ArrayList<>();
 
@@ -75,5 +77,21 @@ public class PedidoUtils {
             detalleDTOList.add(responseDTO);
         }
         return detalleDTOList;
+    }
+
+    public PedidoResponseDTO obtenerResponseDTO(PedidoCabecera cabecera, List<PedidoDetalle> detalles){
+
+        PedidoResponseDTO response = new PedidoResponseDTO();
+        response.setFecha(cabecera.getFechaAlta());
+        response.setDireccion(cabecera.getDireccion());
+        response.setEmail(cabecera.getEmail());
+        response.setTelefono(cabecera.getTelefono());
+        response.setHorario(cabecera.getHorario());
+        response.setDetalles(this.convertirADetalleResponseDTO(detalles));
+        response.setTotal(cabecera.getMontoTotal());
+        response.setDescuento(cabecera.getAplicoDescuento());
+        response.setEstado(cabecera.getEstado());
+
+        return response;
     }
 }

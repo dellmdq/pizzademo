@@ -15,7 +15,6 @@ import javax.validation.Valid;
 @RestController()
 @RequestMapping("/pedidos")
 public class PedidoController {
-//todo hacer service. recordar aplicar descuento en la logica si lleva más de tres productos
 
     @Autowired
     PedidoService pedidoService;
@@ -25,5 +24,7 @@ public class PedidoController {
         PedidoResponseDTO pedidoResponseDTO = pedidoService.create(pedido);
         return ResponseEntity.ok(pedidoResponseDTO);
     }
+
+    //todo listar pedidos por fecha
 
 }
