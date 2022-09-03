@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/productos")
 public class ProductoController {
 
     @Autowired
@@ -55,7 +55,8 @@ public class ProductoController {
     public ResponseEntity<?> findById(@PathVariable UUID id) {
         try {
             Producto producto = productoService.findById(id);
-            return ResponseEntity.status(HttpStatus.OK).body(producto);
+            ProductoResponseDTO response = modelMapper.map(producto, ProductoResponseDTO.class);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
         }catch (NotFoundException nfe){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(nfe.getMessage());
         }
