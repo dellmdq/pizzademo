@@ -79,7 +79,7 @@ public class PedidoUtils {
         return detalleDTOList;
     }
 
-    public PedidoResponseDTO obtenerResponseDTO(PedidoCabecera cabecera, List<PedidoDetalle> detalles){
+    public PedidoResponseDTO obtenerResponseDTO(PedidoCabecera cabecera){
 
         PedidoResponseDTO response = new PedidoResponseDTO();
         response.setFecha(cabecera.getFechaAlta());
@@ -87,7 +87,7 @@ public class PedidoUtils {
         response.setEmail(cabecera.getEmail());
         response.setTelefono(cabecera.getTelefono());
         response.setHorario(cabecera.getHorario());
-        response.setDetalles(this.convertirADetalleResponseDTO(detalles));
+        response.setDetalles(this.convertirADetalleResponseDTO(cabecera.getDetalles()));
         response.setTotal(cabecera.getMontoTotal());
         response.setDescuento(cabecera.getAplicoDescuento());
         response.setEstado(cabecera.getEstado());

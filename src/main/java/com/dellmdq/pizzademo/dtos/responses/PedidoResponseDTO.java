@@ -7,13 +7,11 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
 public class PedidoResponseDTO {
 
-    private UUID id;
     private LocalDate fecha;
     private String direccion;
     private String email;

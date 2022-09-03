@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -25,7 +26,7 @@ public class PedidoServiceImpl implements PedidoService {
     @Autowired
     private PedidoUtils pedidoUtils;
 
-    @Override
+    @Override//fixme: trasladar logica DTO a controller
     public PedidoResponseDTO create(PedidoRequestDTO pedido) throws BadRequestException {
         //creacion cabecera
         PedidoCabecera cabecera = new PedidoCabecera(pedido.getDireccion(),
@@ -44,9 +45,14 @@ public class PedidoServiceImpl implements PedidoService {
         //guardo detalles
         PedidoCabecera pedidoCreado = pedidoRepository.save(cabecera);
         //contruccion de respuesta
-        PedidoResponseDTO response = pedidoUtils.obtenerResponseDTO(pedidoCreado, detallesCabecera);
+        PedidoResponseDTO response = pedidoUtils.obtenerResponseDTO(pedidoCreado);
 
         return response;
 
+    }
+
+    @Override
+    public List<PedidoCabecera> listarPedidosPorFecha(LocalDate date) {
+        return pedidoRepository.findByFechaAlta(date);
     }
 }

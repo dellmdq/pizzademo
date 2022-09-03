@@ -11,7 +11,10 @@ public class PizzademoApplication {
 	//todo agregar collections postman al proyecto
 	//todo demo con peek o obs para mostrar funcionalidad
 	//todo openapi
-	//todochequear regex validacion de algunos campos telefono, email, UUID (?)
+	//todo chequear regex validacion de algunos campos telefono, email, UUID (?)
+	//todo optional mejorar los mapeos de entity a dto
+	//todo trasladar lógica de mapeo dtos de service a controllers
+	//fixme: ojo mezclando español con inglés
 	public static void main(String[] args) {
 		SpringApplication.run(PizzademoApplication.class, args);
 	}
