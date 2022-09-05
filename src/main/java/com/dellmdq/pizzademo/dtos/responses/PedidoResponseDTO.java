@@ -19,7 +19,7 @@ public class PedidoResponseDTO {
     private String email;
     private String telefono;
     private LocalTime horario;
-    List<PedidoDetalleResponseDTO> detalles;
+    List<PedidoDetalleResponseDTO> detalle;
     private Double total;
     private Boolean descuento;
     private Estado estado;

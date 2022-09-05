@@ -22,7 +22,7 @@ public class PedidosResponseDTOData {
         
         List<PedidoDetalleResponseDTO> detalleResponseDTOList = new ArrayList<>();
         detalleResponseDTOList.add(PedidoDetalleResponseDTOData.crearDetalleResponseDTO1());
-        pedidoResponseDTO.setDetalles(detalleResponseDTOList);
+        pedidoResponseDTO.setDetalle(detalleResponseDTOList);
 
         pedidoResponseDTO.setTotal(950.00D);
         pedidoResponseDTO.setDescuento(false);
@@ -41,7 +41,7 @@ public class PedidosResponseDTOData {
         List<PedidoDetalleResponseDTO> detalleResponseDTOList = new ArrayList<>();
         detalleResponseDTOList.add(PedidoDetalleResponseDTOData.crearDetalleResponseDTO1());
         detalleResponseDTOList.add(PedidoDetalleResponseDTOData.crearDetalleResponseDTO2());
-        pedidoResponseDTO.setDetalles(detalleResponseDTOList);
+        pedidoResponseDTO.setDetalle(detalleResponseDTOList);
 
         pedidoResponseDTO.setTotal(3080.00D);
         pedidoResponseDTO.setDescuento(true);

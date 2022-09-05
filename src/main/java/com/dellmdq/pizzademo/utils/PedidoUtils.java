@@ -8,7 +8,6 @@ import com.dellmdq.pizzademo.entities.PedidoCabecera;
 import com.dellmdq.pizzademo.entities.PedidoDetalle;
 import com.dellmdq.pizzademo.entities.Producto;
 import com.dellmdq.pizzademo.services.ProductoService;
-import com.dellmdq.pizzademo.services.impl.ProductoServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -95,7 +94,7 @@ public class PedidoUtils {
         response.setEmail(cabecera.getEmail());
         response.setTelefono(cabecera.getTelefono());
         response.setHorario(cabecera.getHorario());
-        response.setDetalles(convertirADetalleResponseDTO(cabecera.getDetalles()));
+        response.setDetalle(convertirADetalleResponseDTO(cabecera.getDetalles()));
         response.setTotal(cabecera.getMontoTotal());
         response.setDescuento(cabecera.getAplicoDescuento());
         response.setEstado(cabecera.getEstado());

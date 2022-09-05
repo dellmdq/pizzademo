@@ -3,12 +3,14 @@ package com.dellmdq.pizzademo.dtos.requests;
 import com.dellmdq.pizzademo.enums.Estado;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalTime;
 import java.util.List;
 
 @Getter
 @Setter
+@ToString
 public class PedidoRequestDTO {
 
     private String direccion;
