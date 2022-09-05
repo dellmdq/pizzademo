@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PedidoService {
 
-    PedidoResponseDTO create(PedidoRequestDTO pedido) throws BadRequestException;
+    PedidoResponseDTO crearPedido(PedidoRequestDTO pedido) throws BadRequestException;
 
     List<PedidoResponseDTO> listarPedidosPorFecha(LocalDate date);
 

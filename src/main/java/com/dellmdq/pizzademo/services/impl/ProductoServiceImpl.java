@@ -7,7 +7,6 @@ import com.dellmdq.pizzademo.exceptions.BadRequestException;
 import com.dellmdq.pizzademo.exceptions.NotFoundException;
 import com.dellmdq.pizzademo.repositories.ProductoRepository;
 import com.dellmdq.pizzademo.services.ProductoService;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,6 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public ProductoResponseDTO create(ProductoRequestDTO productoRequestDTO) throws BadRequestException {
 
-        //todo manejo de excepciones
         Producto producto = modelMapper.map(productoRequestDTO, Producto.class);
         Producto productoCreated = productoRepository.save(producto);//todo validar que no exista el nombre en la bd
         ProductoResponseDTO result = modelMapper.map(productoCreated, ProductoResponseDTO.class);
@@ -44,8 +42,10 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public Producto findById(UUID id) throws NotFoundException{
-        return productoRepository.findById(id).orElseThrow(() -> (new NotFoundException(String.format("Producto con UUID: %s no fue encontrado.", id))));
+    public ProductoResponseDTO findById(UUID id) throws NotFoundException{
+        Producto producto = productoRepository.findById(id).orElseThrow(() -> (new NotFoundException(String.format("Producto con UUID: %s no fue encontrado.", id))));
+        ProductoResponseDTO response = modelMapper.map(producto, ProductoResponseDTO.class);
+        return response;
     }
 
     @Override
@@ -56,21 +56,21 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public void update(UUID id, ProductoRequestDTO productoRequestDTO) throws NotFoundException {
 
-        Producto productoExistente = this.findById(id);
+        Producto productoExistente = productoRepository.findById(id).orElseThrow(() -> (new NotFoundException(String.format("Producto con UUID: %s no fue encontrado.", id))));
 
         //seteo todos los valores de acuerdo a la lógica del put y lo guardo en la bd
         productoExistente.setNombre(productoRequestDTO.getNombre());
         productoExistente.setDescripcionCorta(productoRequestDTO.getDescripcionCorta());
         productoExistente.setDescripcionLarga(productoRequestDTO.getDescripcionLarga());
         productoExistente.setPrecioUnitario(productoRequestDTO.getPrecioUnitario());
-        Producto productoGuardado = productoRepository.save(productoExistente);
+        productoRepository.save(productoExistente);
     }
 
     //todo optional agrear el PATCH
 
     @Override
     public Double getProductoPrecioUnitario(UUID id) throws NotFoundException {
-        Producto producto = this.findById(id);//todo mejorar armando metodo en repo que solo me traiga el precio
+        Producto producto = productoRepository.findById(id).orElseThrow(() -> (new NotFoundException(String.format("Producto con UUID: %s no fue encontrado.", id))));
         return producto.getPrecioUnitario();
     }
 

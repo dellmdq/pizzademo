@@ -15,7 +15,7 @@ public interface ProductoService {
 
     List<ProductoResponseDTO> findAll();
 
-    Producto findById(UUID id) throws NotFoundException;
+    ProductoResponseDTO findById(UUID id) throws NotFoundException;
 
     void deleteById(UUID id) throws NotFoundException;
 

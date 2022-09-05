@@ -3,11 +3,14 @@ package com.dellmdq.pizzademo.utils;
 import com.dellmdq.pizzademo.dtos.requests.DetalleRequestDTO;
 import com.dellmdq.pizzademo.dtos.responses.PedidoDetalleResponseDTO;
 import com.dellmdq.pizzademo.dtos.responses.PedidoResponseDTO;
+import com.dellmdq.pizzademo.dtos.responses.ProductoResponseDTO;
 import com.dellmdq.pizzademo.entities.PedidoCabecera;
 import com.dellmdq.pizzademo.entities.PedidoDetalle;
 import com.dellmdq.pizzademo.entities.Producto;
 import com.dellmdq.pizzademo.services.ProductoService;
 import com.dellmdq.pizzademo.services.impl.ProductoServiceImpl;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -19,17 +22,19 @@ public class PedidoUtils {
     private static final Integer CANT_DESC_TRES_ARTICULOS = 3;
     private static final Double MULTIPLIER_DESC_TRES_ARTICULOS = 0.7;
 
-
-    private final static ProductoService productoService = new ProductoServiceImpl();
+    @Autowired
+    private ProductoService productoService;
+    @Autowired
+    private ModelMapper modelMapper;
 
     //boolean descuento
-    public static Boolean descuentoTresArticulosAplicable(List<PedidoDetalle> detalles){
+    public Boolean descuentoTresArticulosAplicable(List<PedidoDetalle> detalles){
         int cantidadArticulos = detalles.stream().mapToInt(PedidoDetalle::getCantidad).sum();
         return cantidadArticulos > CANT_DESC_TRES_ARTICULOS;
     }
 
     //metodo de calculo de monto total
-    public static Double calcularMontoTotal(List<PedidoDetalle> detalles){
+    public Double calcularMontoTotal(List<PedidoDetalle> detalles){
         double montoTotal = 0D;
 
         for (PedidoDetalle pd : detalles) {
@@ -49,14 +54,16 @@ public class PedidoUtils {
      * @param detalleDTOList lista con los detalles pasados por request
      * @return Lista de detalle de pedido.
      */
-    public static List<PedidoDetalle> convertirAPedidoDetalle(
+    public List<PedidoDetalle> convertirAPedidoDetalle(
             List<DetalleRequestDTO> detalleDTOList){
         List<PedidoDetalle> detallesCabecera = new ArrayList<>();
+
         for (DetalleRequestDTO pd : detalleDTOList) {
-            Producto tempProd = productoService.findById(pd.getProducto());
+            ProductoResponseDTO tempProdDTO = productoService.findById(pd.getProducto());
+            Producto tempProd;
             //agrego detalle a la lista de detalles
             detallesCabecera.add(new PedidoDetalle(
-                    tempProd,
+                    tempProd = modelMapper.map(tempProdDTO, Producto.class),
                     pd.getCantidad(),
                     tempProd.getPrecioUnitario()
             ));
@@ -64,7 +71,7 @@ public class PedidoUtils {
         return detallesCabecera;
     }
 
-    public static List<PedidoDetalleResponseDTO> convertirADetalleResponseDTO(
+    public List<PedidoDetalleResponseDTO> convertirADetalleResponseDTO(
             List<PedidoDetalle> pedidoDetalles){
         List<PedidoDetalleResponseDTO> detalleDTOList = new ArrayList<>();
 
@@ -73,14 +80,14 @@ public class PedidoUtils {
             responseDTO.setProducto(pd.getProducto().getId());
             responseDTO.setNombre(pd.getProducto().getNombre());
             responseDTO.setCantidad(pd.getCantidad());
-            responseDTO.setImporte(pd.getPrecioUnitario());
+            responseDTO.setImporte(pd.getPrecioUnitario() * pd.getCantidad());
             detalleDTOList.add(responseDTO);
         }
         return detalleDTOList;
     }
 
     //fixme: mejorar este mapeo
-    public static PedidoResponseDTO obtenerResponseDTO(PedidoCabecera cabecera){
+    public PedidoResponseDTO obtenerResponseDTO(PedidoCabecera cabecera){
 
         PedidoResponseDTO response = new PedidoResponseDTO();
         response.setFecha(cabecera.getFechaAlta());

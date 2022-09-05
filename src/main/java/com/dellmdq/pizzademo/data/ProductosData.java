@@ -10,7 +10,7 @@ public class ProductosData {
 
     public static Producto crearProducto1(){
         Producto prod1 = new Producto();
-        prod1.setId(UUID.randomUUID());
+        prod1.setId(UUID.fromString("32f5a99a-76cc-42d6-84bb-1d40cd1b9f6b"));
         prod1.setNombre("Muzzarella");
         prod1.setDescripcionCorta("Pizza con muzzarella y aceitunas");
         prod1.setDescripcionLarga("");
@@ -20,7 +20,7 @@ public class ProductosData {
     
     public static Producto crearProducto2(){
         Producto prod2 = new Producto();
-        prod2.setId(UUID.randomUUID());
+        prod2.setId(UUID.fromString("94e38a1d-bf6e-4f00-9a7f-ba21495631bb"));
         prod2.setNombre("Jamón y morrones");
         prod2.setDescripcionCorta("Pizza de jamón y morrones");
         prod2.setDescripcionLarga("");
@@ -30,7 +30,7 @@ public class ProductosData {
 
     public static Producto crearProducto3(){
         Producto prod3 = new Producto();
-        prod3.setId(UUID.randomUUID());
+        prod3.setId(UUID.fromString("d89c4e27-b7d2-430c-81d1-9b380e46a4f3"));
         prod3.setNombre("Calabresa");
         prod3.setDescripcionCorta("Pizza con Muzzarella y loganiza");
         prod3.setDescripcionLarga("");

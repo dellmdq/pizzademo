@@ -5,6 +5,7 @@ import com.dellmdq.pizzademo.entities.PedidoDetalle;
 import com.dellmdq.pizzademo.entities.Producto;
 import com.dellmdq.pizzademo.enums.Estado;
 import com.dellmdq.pizzademo.utils.PedidoUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,6 +14,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class PedidosData {
+
+    private static PedidoUtils pedidoUtils = new PedidoUtils();
 
     public static PedidoDetalle crearDetalle1(){
         Producto prod1 = ProductosData.crearProducto1();
@@ -60,8 +63,8 @@ public class PedidosData {
         List<PedidoDetalle> detalles = new ArrayList<>();
         detalles.add(crearDetalle1());
         cabecera.setDetalles(detalles);
-        cabecera.setAplicoDescuento(PedidoUtils.descuentoTresArticulosAplicable(cabecera.getDetalles()));
-        cabecera.setMontoTotal(PedidoUtils.calcularMontoTotal(detalles));
+        cabecera.setAplicoDescuento(pedidoUtils.descuentoTresArticulosAplicable(cabecera.getDetalles()));
+        cabecera.setMontoTotal(pedidoUtils.calcularMontoTotal(detalles));
 
         return cabecera;
     }
@@ -81,8 +84,8 @@ public class PedidosData {
         detalles.add(crearDetalle2());
         detalles.add(crearDetalle3());
         cabecera.setDetalles(detalles);
-        cabecera.setAplicoDescuento(PedidoUtils.descuentoTresArticulosAplicable(cabecera.getDetalles()));
-        cabecera.setMontoTotal(PedidoUtils.calcularMontoTotal(detalles));
+        cabecera.setAplicoDescuento(pedidoUtils.descuentoTresArticulosAplicable(cabecera.getDetalles()));
+        cabecera.setMontoTotal(pedidoUtils.calcularMontoTotal(detalles));
 
         return cabecera;
     }
