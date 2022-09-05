@@ -126,7 +126,7 @@
 					"response": []
 				},
 				{
-					"name": "Productos Ejemplo",
+					"name": "Crear Productos Ejemplo",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -135,7 +135,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"id\": \"7f000101-82f7-123c-8182-f7429d580000\",\n        \"nombre\": \"Jamón y morrones\",\n        \"descripcionCorta\": \"Pizza de jamón y morrones\",\n        \"descripcionLarga\": \"\",\n        \"precioUnitario\": \"950.0\"\n    },\n    {\n        \"id\": \"7f000101-82f7-1290-8182-f753fa7b0000\",\n        \"nombre\": \"Muzzarella\",\n        \"descripcionCorta\": \"Pizza con muzzarella y aceitunas\",\n        \"descripcionLarga\": \"\",\n        \"precioUnitario\": \"750.0\"\n    },\n        {\n        \"id\": \"7f000101-82f7-1ccf-8182-f75fa8c90000\",\n        \"nombre\": \"Calabresa\",\n        \"descripcionCorta\": \"Pizza con Muzzarella y loganiza\",\n        \"descripcionLarga\": \"\",\n        \"precioUnitario\": \"1100.0\"\n    },\n     {\n        \"id\": \"7f000101-82f7-1ccf-8182-f762d7580002\",\n        \"nombre\": \"Napolitana\",\n        \"descripcionCorta\": \"Pizza con tomates y queso mozzarella, acompañados de anchoas, alcaparras, ajo o aceite de oliva\",\n        \"descripcionLarga\": \"Con una masa más gruesa, sobre todo en los bordes que son un poco esponjosos. Se prepara en un horno de leña y sus ingredientes son similares a los de la pizza margarita.\",\n        \"precioUnitario\": \"1100.0\"\n    }\n        {\n        \"id\": \"7f000101-82ff-125a-8182-ff241b5d0000\",\n        \"nombre\": \"BurgerPizza\",\n        \"descripcionCorta\": \"Pizza con carne picada\",\n        \"descripcionLarga\": \"Muzzarela, con una capa de carne picada en forma de hamburguesa.\",\n        \"precioUnitario\": \"2500.0\"\n    }",
+							"raw": "    {\n        \"nombre\": \"Jamón y morrones\",\n        \"descripcionCorta\": \"Pizza de jamón y morrones\",\n        \"descripcionLarga\": \"\",\n        \"precioUnitario\": \"950.0\"\n    },\n    {\n        \"nombre\": \"Muzzarella\",\n        \"descripcionCorta\": \"Pizza con muzzarella y aceitunas\",\n        \"descripcionLarga\": \"\",\n        \"precioUnitario\": \"750.0\"\n    },\n        {\n        \"nombre\": \"Calabresa\",\n        \"descripcionCorta\": \"Pizza con Muzzarella y loganiza\",\n        \"descripcionLarga\": \"\",\n        \"precioUnitario\": \"1100.0\"\n    },\n     {\n        \"nombre\": \"Napolitana\",\n        \"descripcionCorta\": \"Pizza con tomates y queso mozzarella, acompañados de anchoas, alcaparras, ajo o aceite de oliva\",\n        \"descripcionLarga\": \"Con una masa más gruesa, sobre todo en los bordes que son un poco esponjosos. Se prepara en un horno de leña y sus ingredientes son similares a los de la pizza margarita.\",\n        \"precioUnitario\": \"1100.0\"\n    }\n        {\n        \"nombre\": \"BurgerPizza\",\n        \"descripcionCorta\": \"Pizza con carne picada\",\n        \"descripcionLarga\": \"Muzzarela, con una capa de carne picada en forma de hamburguesa.\",\n        \"precioUnitario\": \"2500.0\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -207,7 +207,7 @@
 					"response": []
 				},
 				{
-					"name": "Pedidos Ejemplo",
+					"name": "Crear Pedidos Ejemplo",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -216,7 +216,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"direccion\": \"12 de octubre 666\",\n    \"email\": \"pizzaclient@pizzademo.com\",\n    \"telefono\": \"(0223) 5223366\",\n    \"horario\": \"19:00\",\n    \"detalle\": [\n    { \"producto\": \"7f000101-8300-1317-8183-0014d8890001\",\n    \"cantidad\": 1 },\n    { \"producto\": \"7f000101-8300-1317-8183-0014a6a60000\",\n    \"cantidad\": 1 },\n    { \"producto\": \"7f000101-8303-19eb-8183-037af8a00000\",\n    \"cantidad\": 1 }]\n}\n\n{\n        \"fecha\": \"2022-09-03\",\n        \"direccion\": \"Dorton Road 80\",\n        \"email\": \"tsayb@opera.com\",\n        \"telefono\": \"(0351) 48158101\",\n        \"horario\": \"21:00:00\",\n        \"detalles\": [\n            {\n                \"producto\": \"7f000101-8300-1317-8183-0014a6a60000\",\n                \"nombre\": \"BurgerPizza\",\n                \"cantidad\": 3,\n                \"importe\": 2500.0\n            },\n            {\n                \"producto\": \"7f000101-8300-1317-8183-0014d8890001\",\n                \"nombre\": \"Muzzarella\",\n                \"cantidad\": 2,\n                \"importe\": 750.0\n            }\n        ],\n        \"total\": 6300.0,\n        \"descuento\": true,\n        \"estado\": \"RECIBIDO\"\n    }",
+							"raw": "{\n    \"direccion\": \"12 de octubre 666\",\n    \"email\": \"pizzaclient@pizzademo.com\",\n    \"telefono\": \"(0223) 5223366\",\n    \"horario\": \"19:00\",\n    \"detalle\": [\n    { \"producto\": \"7f000101-8300-1317-8183-0014d8890001\",\n    \"cantidad\": 1 },\n    { \"producto\": \"7f000101-8300-1317-8183-0014a6a60000\",\n    \"cantidad\": 1 },\n    { \"producto\": \"7f000101-8303-19eb-8183-037af8a00000\",\n    \"cantidad\": 1 }]\n}\n\n{\n        \"fecha\": \"2022-09-03\",\n        \"direccion\": \"Dorton Road 80\",\n        \"email\": \"tsayb@opera.com\",\n        \"telefono\": \"(0351) 48158101\",\n        \"horario\": \"21:00:00\",\n        \"detalle\": [\n            {\n                \"producto\": \"7f000101-8300-1317-8183-0014a6a60000\",\n                \"cantidad\": 3,\n            },\n            {\n                \"producto\": \"7f000101-8300-1317-8183-0014d8890001\",\n                \"cantidad\": 2,\n            }\n        ]\n    }\n\n    {\n    \"fecha\": \"2022-09-03\",\n    \"direccion\": \"La Costa 2222\",\n    \"email\": \"matiasgomez@mardel.com\",\n    \"telefono\": \"(0223) 4758598\",\n    \"horario\": \"20:30:00\",\n    \"detalle\": [\n      {\n        \"producto\": \"7f000101-8300-1317-8183-0014a6a60000\",\n        \"cantidad\": 3\n      },\n      {\n        \"producto\": \"7f000101-8300-1317-8183-0014d8890001\",\n        \"cantidad\": 2\n      }\n    ]\n  }\n\n  {\n    \"fecha\": \"2022-09-03\",\n    \"direccion\": \"La Costa 2222\",\n    \"email\": \"matiasgomez@mardel.com\",\n    \"telefono\": \"(0223) 4758598\",\n    \"horario\": \"20:30:00\",\n    \"detalle\": [\n      {\n        \"producto\": \"7f000101-8300-1317-8183-0014a6a60000\",\n        \"cantidad\": 3\n      },\n      {\n        \"producto\": \"7f000101-8300-1317-8183-0014d8890001\",\n        \"cantidad\": 2\n      }\n    ]\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
