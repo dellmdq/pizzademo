@@ -32,7 +32,7 @@ public class PedidosResponseDTOData {
 
     public static PedidoResponseDTO pedidoResponseDTO2() {
         PedidoResponseDTO pedidoResponseDTO = new PedidoResponseDTO();
-        pedidoResponseDTO.setFecha(LocalDate.of(2022,7,22));
+        pedidoResponseDTO.setFecha(LocalDate.of(2022,9,3));
         pedidoResponseDTO.setDireccion("Independencia 2211");
         pedidoResponseDTO.setEmail("marcelopala@tyc.com");
         pedidoResponseDTO.setTelefono("(011) 5123123");

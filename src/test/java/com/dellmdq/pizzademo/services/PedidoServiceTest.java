@@ -96,7 +96,7 @@ public class PedidoServiceTest {
         PedidoResponseDTO pedido = pedidoService.crearPedido(pedidoRequestDTO1);
 
         assertNotNull(pedido);
-        assertEquals(LocalDate.of(2022,7,22).toString(), pedido.getFecha().toString());
+        assertEquals(LocalDate.of(2022,9,3).toString(), pedido.getFecha().toString());
         assertEquals(pedido.getDireccion(),pedidoRequestDTO1.getDireccion());
         assertEquals(pedido.getEmail(), pedidoRequestDTO1.getEmail());
         assertEquals(pedido.getTelefono(), pedidoRequestDTO1.getTelefono());
@@ -136,7 +136,7 @@ public class PedidoServiceTest {
         PedidoResponseDTO pedido = pedidoService.crearPedido(pedidoRequestDTO1);
 
         assertNotNull(pedido);
-        assertEquals(LocalDate.of(2022,7,22).toString(), pedido.getFecha().toString());
+        assertEquals(LocalDate.of(2022,9,3).toString(), pedido.getFecha().toString());
         assertEquals(pedido.getDireccion(),pedidoResponseDTO2.getDireccion());
         assertEquals(pedido.getEmail(), pedidoResponseDTO2.getEmail());
         assertEquals(pedido.getTelefono(), pedidoResponseDTO2.getTelefono());
@@ -170,7 +170,7 @@ public class PedidoServiceTest {
         assertNotNull(pedidos.get(0).getDetalles());
         assertNotNull(pedidos.get(1).getDetalles());
 
-        verify(pedidoRepository, times(1)).save(any(PedidoCabecera.class));
+        verify(pedidoRepository, times(1)).findByFechaAlta(LocalDate.of(2022,9,3));
         verify(pedidoUtils, times(2)).obtenerResponseDTO(any(PedidoCabecera.class));
 
     }

@@ -51,7 +51,7 @@ public class ProductoServiceTest {
         assertNotNull(productoResponseDTO.getDescripcionCorta());
         assertNotNull(productoResponseDTO.getDescripcionLarga());
 
-        verify(productoRepository, times(6)).save(any());
+        verify(productoRepository, times(1)).save(any());
     }
 
     @Test
