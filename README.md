@@ -7,4 +7,5 @@
 **DataSource**: MySQL
     **Database**: pizzademo
 
-**Postman collection** available at project root.
+**Postman collection** available at project root. Example data available to
+test endpoints.
