@@ -9,6 +9,7 @@ import com.dellmdq.pizzademo.dtos.responses.PedidoResponseDTO;
 import com.dellmdq.pizzademo.entities.PedidoCabecera;
 import com.dellmdq.pizzademo.entities.PedidoDetalle;
 import com.dellmdq.pizzademo.enums.Estado;
+import com.dellmdq.pizzademo.exceptions.NotFoundException;
 import com.dellmdq.pizzademo.repositories.PedidoRepository;
 import com.dellmdq.pizzademo.services.impl.PedidoServiceImpl;
 import com.dellmdq.pizzademo.utils.PedidoUtils;
@@ -27,6 +28,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -172,6 +174,22 @@ public class PedidoServiceTest {
 
         verify(pedidoRepository, times(1)).findByFechaAlta(LocalDate.of(2022,9,3));
         verify(pedidoUtils, times(2)).obtenerResponseDTO(any(PedidoCabecera.class));
+
+    }
+
+    @Test
+    @DisplayName("Test crear pedido con producto inexistente")
+    void crearPedidoConError(){
+
+        PedidoRequestDTO pedidoRequestDTO = pedidoRequestDTO2;
+
+        when(pedidoUtils.convertirAPedidoDetalle(pedidoRequestDTO.getDetalle())).
+                thenThrow(new NotFoundException(String.format("Producto con UUID: %s no fue encontrado.",
+                        pedidoRequestDTO2.getDetalle().get(0).getProducto())));
+
+        assertThrows(NotFoundException.class, () -> pedidoService.crearPedido(pedidoRequestDTO2));
+
+        verify(pedidoUtils).convertirAPedidoDetalle(pedidoRequestDTO2.getDetalle());
 
     }
 
